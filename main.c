@@ -1,0 +1,48 @@
+#include "shell.h"
+
+/**
+ * main - takes a command and execute it
+ * Return: integer
+ **/
+int main(void)
+{
+	int i;
+	pid_t pid;
+	char command[1024];
+	char **tokens;
+	size_t bufferSize = 1024;
+
+	while (1)
+	{
+
+		write(1, "$ ", 2);
+		_getline(command, bufferSize);
+		tokens = tokenizeTheCommand(command);
+
+		if (tokens[0] != NULL)
+		{
+			pid = fork();
+			if (pid == -1)
+			{
+			write(1, "hsh: Failed to fork the process\n", 31);
+			}
+			else if (pid == 0)
+			{
+				if (strcmp(tokens[0], "exit") == 0)
+					_exitShell();
+				else if (strcmp(tokens[0], "env") == 0)
+					printEnv();
+				else
+					executeCommand(tokens);
+			}
+			else
+				wait(NULL);
+		}
+
+		for (i = 0; tokens[i] != NULL; i++)
+			free(tokens[i]);
+		free(tokens);
+	}
+
+	return (0);
+}
