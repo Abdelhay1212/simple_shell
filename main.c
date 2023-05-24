@@ -8,8 +8,7 @@ int main(void)
 {
 	int i;
 	pid_t pid;
-	char *command;
-	char **tokens;
+	char *command, **tokens;
 	size_t bufferSize = 1024;
 
 	while (1)
@@ -18,14 +17,13 @@ int main(void)
 		command = malloc(1024 * sizeof(char));
 		_getline(command, bufferSize);
 
-		if (command != NULL)
+		if (command)
 		{
-			tokens = tokenizeTheCommand(command);
-			if (strcmp(tokens[0], "exit") == 0)
+			if (strcmp(command, "exit") == 0)
 			{
-				free(command);
-				exit(0);
+				_exitShell(command);
 			}
+			tokens = tokenizeTheCommand(command);
 			pid = fork();
 			if (pid == -1)
 			{
