@@ -26,7 +26,7 @@ int main(void)
 			exit(0);
 		}
 
-		if (strcmp(tokens[0], "\n"))
+		if (strcmp(tokens[0], '\0') != 0)
 		{
 			pid = fork();
 			if (pid == -1)
