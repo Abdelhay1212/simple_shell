@@ -16,7 +16,6 @@ int main(void)
 		write(1, "$ ", 2);
 		command = malloc(1024 * sizeof(char));
 		_getline(command, bufferSize);
-
 		if (command)
 		{
 			if (strcmp(command, "exit") == 0)
