@@ -12,7 +12,7 @@ extern char **environ;
 char **tokenizeTheCommand(char *command);
 void executeCommand(char **tokens);
 void _getline(char *buffer, size_t bufferSize);
-void printEnv();
-void _exitShell();
+void printEnv(void);
+void _exitShell(void);
 
 #endif
