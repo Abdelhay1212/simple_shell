@@ -7,6 +7,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+extern char **environ;
+
 char **tokenizeTheCommand(char *command);
 void executeCommand(char **tokens);
 void _getline(char *buffer, size_t bufferSize);
