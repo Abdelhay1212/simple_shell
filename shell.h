@@ -13,6 +13,6 @@ char **tokenizeTheCommand(char *command);
 void executeCommand(char **tokens);
 void _getline(char *buffer, size_t bufferSize);
 void printEnv(void);
-void _exitShell(void);
+void _exitShell(char *command);
 
 #endif
