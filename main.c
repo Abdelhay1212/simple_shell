@@ -8,7 +8,7 @@ int main(void)
 {
 	int i;
 	pid_t pid;
-	char command[1024];
+	char *command;
 	char **tokens;
 	size_t bufferSize = 1024;
 
@@ -16,8 +16,15 @@ int main(void)
 	{
 
 		write(1, "$ ", 2);
+		command = malloc(1024 * sizeof(char));
 		_getline(command, bufferSize);
 		tokens = tokenizeTheCommand(command);
+		
+		if (strcmp(tokens[0], "exit") == 0)
+		{
+			free(command);
+			exit(0);
+		}
 
 		if (tokens[0] != NULL)
 		{
@@ -28,9 +35,7 @@ int main(void)
 			}
 			else if (pid == 0)
 			{
-				if (strcmp(tokens[0], "exit") == 0)
-					_exitShell();
-				else if (strcmp(tokens[0], "env") == 0)
+				if (strcmp(tokens[0], "env") == 0)
 					printEnv();
 				else
 					executeCommand(tokens);
@@ -42,6 +47,8 @@ int main(void)
 		for (i = 0; tokens[i] != NULL; i++)
 			free(tokens[i]);
 		free(tokens);
+		
+		free(command);
 	}
 
 	return (0);
