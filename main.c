@@ -14,7 +14,6 @@ int main(void)
 
 	while (1)
 	{
-
 		write(1, "$ ", 2);
 		command = malloc(1024 * sizeof(char));
 		_getline(command, bufferSize);
@@ -22,13 +21,11 @@ int main(void)
 		if (command != NULL)
 		{
 			tokens = tokenizeTheCommand(command);
-
 			if (strcmp(tokens[0], "exit") == 0)
 			{
 				free(command);
 				exit(0);
 			}
-			
 			pid = fork();
 			if (pid == -1)
 			{
@@ -49,9 +46,7 @@ int main(void)
 				free(tokens[i]);
 			free(tokens);
 		}
-		
 		free(command);
 	}
-
 	return (0);
 }
