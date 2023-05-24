@@ -2,6 +2,8 @@
 
 /**
  * _getline - takes input from STDIN
+ * @buffer: stores the input
+ * @bufferSize: the size of buffer
  * Return: void
  **/
 void _getline(char *buffer, size_t bufferSize)
