@@ -26,7 +26,7 @@ int main(void)
 			exit(0);
 		}
 
-		if (tokens[0] != NULL)
+		if (tokens[0] != "\n")
 		{
 			pid = fork();
 			if (pid == -1)
@@ -47,9 +47,9 @@ int main(void)
 			for (i = 0; tokens[i] != NULL; i++)
 				free(tokens[i]);
 			free(tokens);
-		
-			free(command);
 		}
+		
+		free(command);
 	}
 
 	return (0);
