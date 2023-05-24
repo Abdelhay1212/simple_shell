@@ -18,16 +18,17 @@ int main(void)
 		write(1, "$ ", 2);
 		command = malloc(1024 * sizeof(char));
 		_getline(command, bufferSize);
-		tokens = tokenizeTheCommand(command);
-		
-		if (strcmp(tokens[0], "exit") == 0)
-		{
-			free(command);
-			exit(0);
-		}
 
-		if (strcmp(tokens[0], '\0') != 0)
+		if (command != NULL)
 		{
+			tokens = tokenizeTheCommand(command);
+
+			if (strcmp(tokens[0], "exit") == 0)
+			{
+				free(command);
+				exit(0);
+			}
+			
 			pid = fork();
 			if (pid == -1)
 			{
