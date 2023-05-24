@@ -6,9 +6,9 @@
  **/
 void executeCommand(char **tokens)
 {
-	char* pathEnv = getenv("PATH");
-	char* pathToken;
-	char* path;
+	char *pathEnv = getenv("PATH");
+	char *pathToken;
+	char *path;
 
 	pathToken = strtok(pathEnv, ":");
 	while (pathToken != NULL)
