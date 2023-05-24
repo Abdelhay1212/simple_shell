@@ -2,6 +2,7 @@
 
 /**
  * tokenizeTheCommand - tokenization of the command
+ * @command: the command to tokenize
  * Return: pointer to pointer
  **/
 char **tokenizeTheCommand(char *command)
